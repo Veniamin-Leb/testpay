@@ -24,7 +24,22 @@ checkout.render('payment-form')
      //Код, который нужно выполнить после отображения платежной формы.
   });
 </script>
-
+curl https://api.yookassa.ru/v3/payments \
+  -X POST \
+  -u <Идентификатор магазина>:<Секретный ключ> \
+  -H 'Idempotence-Key: <Ключ идемпотентности>' \
+  -H 'Content-Type: application/json' \
+  -d '{
+        "amount": {
+          "value": "2.00",
+          "currency": "RUB"
+        },
+        "confirmation": {
+          "type": "embedded"
+        },
+        "capture": true,
+        "description": "Заказ №72"
+      }'
 
 <script src="ind.php"></script>
 <script src="test.json"></script>
